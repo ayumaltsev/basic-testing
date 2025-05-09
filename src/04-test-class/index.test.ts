@@ -52,13 +52,13 @@ describe('BankAccount', () => {
     });
 
     test('should set new balance if fetchBalance returned number', async () => {
-        jest.spyOn(account, 'fetchBalance').mockResolvedValue(888);
+        jest.spyOn(account, 'fetchBalance' as any).mockResolvedValue(888);
         await account.synchronizeBalance();
         expect(account.getBalance()).toBe(888);
     });
 
     test('should throw SynchronizationFailedError if fetchBalance returned null', async () => {
-        jest.spyOn(account, 'fetchBalance').mockResolvedValue(null);
+        jest.spyOn(account, 'fetchBalance' as any).mockResolvedValue(null);
         await expect(account.synchronizeBalance()).rejects.toThrow(SynchronizationFailedError);
     });
 });
